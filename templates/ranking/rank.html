@@ -1,0 +1,10 @@
+<table>
+    {% for publisher in publishers %}
+    <tr>
+	    <td>{{ publisher.ranking }}</td>
+        <td>{{ publisher.publisher__name }}</td>
+        <td>{{ publisher.score_sum|floatformat:2 }}</td>
+        <td>{{ publisher.delta }}</td>
+    </tr>
+    {% endfor %}
+</table>
