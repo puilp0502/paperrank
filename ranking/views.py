@@ -30,14 +30,12 @@ def paper_rank(request):
     for i, publisher in enumerate(last_year):
         publisher['ranking'] = i + 1
         last_year_dict[publisher['publisher__name']] = publisher
+    
     for publisher in this_year:
         try:
             last_year_publisher = last_year_dict[publisher['publisher__name']]
             publisher['delta'] = last_year_publisher['ranking'] - publisher['ranking']
         except KeyError:
             publisher['delta'] = 0
-
-    print(this_year)
-    print(last_year)
 
     return render(request, 'ranking/rank.html', {'publishers': this_year})
