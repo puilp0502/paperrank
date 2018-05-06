@@ -6,16 +6,48 @@
   <meta charset="utf-8">
   <title>{% block title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Orbitron:400,300,600|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
   <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% block head %}{% endblock %}
 </head>
 
 <body>
-  <div class="container">
-    {% block contents %}{% endblock %}
+<header id="header-container" class="header">
+  <div id="heading">
+    <a id="logo-link" href="#">
+      <div id="logo">
+        paperrank
+      </div>
+    </a>
+    <div id="nav">
+      <a href="#" class="nav-item">MAIN</a>
+      <a href="#" class="nav-item">RANK</a>
+      <a href="#" class="nav-item">PAPERS</a>
+    </div>
   </div>
+</header>
+<div class="container">
+  {% block contents %}{% endblock %}
+</div>
 </body>
-
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        let isShadowed = false;
+        const header = document.getElementById("header-container");
+        const scrollHandler = function() {
+            let top = window.pageYOffset || document.documentElement.scrollTop;
+            if (!isShadowed && top > 0) {
+                header.classList.add('shadowed-header');
+                isShadowed = true;
+            }
+            else if (isShadowed && top === 0) {
+                header.classList.remove('shadowed-header');
+                isShadowed = false;
+            }
+        };
+        document.addEventListener('scroll', scrollHandler);
+    });
+</script>
 </html>
