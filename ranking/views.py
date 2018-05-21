@@ -26,15 +26,16 @@ def paper_rank(request):
         .order_by('-score_sum', 'publisher__name')
 
     this_year = annotate_ranking(this_year)
+    last_year = annotate_ranking(last_year)
     last_year_dict = {}
-    for i, publisher in enumerate(last_year):
-        publisher['ranking'] = i + 1
+    for publisher in last_year:
         last_year_dict[publisher['publisher__name']] = publisher
-    
+
     for publisher in this_year:
         try:
             last_year_publisher = last_year_dict[publisher['publisher__name']]
             publisher['delta'] = last_year_publisher['ranking'] - publisher['ranking']
+            publisher['delta_abs'] = abs(publisher['delta'])
         except KeyError:
             publisher['delta'] = 0
 

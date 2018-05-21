@@ -17,13 +17,13 @@
   </div>
   <hr>
   {% if publishers %}
-  <table class="u-full-width">
+  <table id="rank" class="u-full-width">
     <thead>
       <tr>
         <th>Ranking</th>
         <th>Publisher Name</th>
         <th>Score</th>
-        <th>Delta</th>
+        <th class="delta">Delta</th>
       </tr>
     </thead>
     <tbody>
@@ -32,7 +32,15 @@
         <td>{{ publisher.ranking }}</td>
         <td>{{ publisher.publisher__name }}</td>
         <td>{{ publisher.score_sum|floatformat:2 }}</td>
-        <td>{{ publisher.delta }}</td>
+        <td class="delta">
+          {% if publisher.delta > 0 %}
+            <div class="gt">▲ {{ publisher.delta_abs }}</div>
+          {% elif publisher.delta < 0 %}
+            <div class="lt">▼ {{ publisher.delta_abs }}</div>
+          {% else %}
+            <div class="eq">-</div>
+          {% endif %}
+        </td>
       </tr>
     {% endfor %}
     </tbody>

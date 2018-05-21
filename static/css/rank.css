@@ -18,6 +18,19 @@
     text-align: right;
     font-size: 2rem;
 }
+#rank {
+    font-size: 1.7rem;
+}
+.delta {
+    text-align: center;
+    font-weight: bold;
+}
+.delta .gt {
+    color: #ef5350;
+}
+.delta .lt {
+    color: #42a5f5;
+}
 .no-data {
     font-size: 1.2em;
     text-align: center;
