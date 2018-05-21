@@ -27,8 +27,19 @@ class Paper(models.Model):
         return '"%s" by %s' % (self.title, self.short_author())
 
 
+def length_slugify(value, length):
+    slug = slugify(value)[:length]
+    if '-' in slug:
+        if slug[-1] == '-':
+            return slug[:-1]
+        else:
+            return '-'.join(slug.split('-')[:-1])
+    else:
+        return slug
+
+
 @receiver(pre_save, sender=Paper)
 def autofill_slug(sender, **kwargs):
     instance = kwargs['instance']
     if not instance.slug:
-        instance.slug = slugify(instance.title)[:50]
+        instance.slug = length_slugify(instance.title, 50)
