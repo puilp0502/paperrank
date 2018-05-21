@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Papers | paperrank{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/paper_list.css' %}">
+{% endblock %}
 {% block contents %}
   <h1>Papers</h1>
   <hr/>
-  <table class="u-full-width">
+  <table id="papers" class="u-full-width">
     <thead>
       <tr>
-        <th>Publisher</th>
-        <th>Title</th>
-        <th>Author</th>
+        <th class="publisher">Publisher</th>
+        <th class="title">Title</th>
+        <th class="author">Author</th>
       </tr>
     </thead>
     <tbody>
