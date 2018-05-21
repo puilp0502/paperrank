@@ -38,4 +38,5 @@ def paper_rank(request):
         except KeyError:
             publisher['delta'] = 0
 
-    return render(request, 'ranking/rank.html', {'publishers': this_year})
+    return render(request, 'ranking/rank.html',
+                  {'publishers': this_year, 'year': year})

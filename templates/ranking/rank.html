@@ -1,8 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Ranking{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/rank.css' %}">
+{% endblock %}
 {% block contents %}
   <h1>Ranking</h1>
+  <div class="row years">
+  <div class="three columns prev">
+    <a href="{% url 'ranking:rank' %}?year={{ year|add:-1 }}"><< {{ year|add:-1 }}</a>
+  </div>
+  <div class="six columns current">{{ year }}</div>
+  <div class="three columns next">
+    <a href="{% url 'ranking:rank' %}?year={{ year|add:1 }}">{{ year|add:1 }} >></a>
+  </div>
+  </div>
   <hr>
+  {% if publishers %}
   <table class="u-full-width">
     <thead>
       <tr>
@@ -12,6 +26,7 @@
         <th>Delta</th>
       </tr>
     </thead>
+    <tbody>
     {% for publisher in publishers %}
       <tr>
         <td>{{ publisher.ranking }}</td>
@@ -20,5 +35,11 @@
         <td>{{ publisher.delta }}</td>
       </tr>
     {% endfor %}
+    </tbody>
   </table>
+  {% else %}
+    <div class="row">
+      <div class="twelve columns no-data">NO DATA AVAILABLE</div>
+    </div>
+  {% endif %}
 {% endblock %}
