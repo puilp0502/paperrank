@@ -2,6 +2,7 @@ from django.db.models import Sum
 from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from .models import Paper
 
@@ -41,3 +42,13 @@ def paper_rank(request):
 
     return render(request, 'ranking/rank.html',
                   {'publishers': this_year, 'year': year})
+
+
+class PaperListView(ListView):
+    model = Paper
+
+    template_name = 'ranking/paper_list.html'
+    context_object_name = 'papers'
+
+    def get_queryset(self):
+        return Paper.objects.order_by('-id')
