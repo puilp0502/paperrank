@@ -1,4 +1,4 @@
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render
@@ -51,4 +51,17 @@ class PaperListView(ListView):
     context_object_name = 'papers'
 
     def get_queryset(self):
-        return Paper.objects.order_by('-id')
+        query = self.request.GET.get('query')
+        if query is not None:
+            return Paper.objects.filter(
+                Q(title__icontains=query) |
+                Q(author__icontains=query) |
+                Q(abstract__contains=query) |
+                Q(publisher__name__icontains=query)).order_by('-id')
+        else:
+            return Paper.objects.order_by('-id')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['query'] = self.request.GET.get('query')
+        return context

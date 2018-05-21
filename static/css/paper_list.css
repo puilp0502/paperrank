@@ -1,3 +1,35 @@
+#title {
+    display: flex;
+    align-items: center;
+}
+#title-heading {
+    width: 80%;
+}
+#search {
+    display: flex;
+    margin-bottom: 0;
+}
+.input-field {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgba(32, 32, 32, 0.12);
+    transition: border .2s;
+}
+.input-field:focus-within {
+    border-bottom: 2px solid rgba(32, 32, 32, 0.72);
+}
+.input-field .material-icons {
+    display: flex;
+    align-items: center;
+}
+.input-field input{
+    display: inline-block;
+    margin: 0;
+    border: none;
+}
+.input-field input:focus {
+    border: none;
+}
 #papers {
     font-size: 1.7rem;
 }

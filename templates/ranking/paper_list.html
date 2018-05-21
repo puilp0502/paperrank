@@ -2,10 +2,21 @@
 {% load static %}
 {% block title %}Papers | paperrank{% endblock %}
 {% block head %}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/paper_list.css' %}">
 {% endblock %}
 {% block contents %}
-  <h1>Papers</h1>
+  <div id="title">
+    <div id="title-heading"><h1>Papers</h1></div>
+    <form id="search" action="" method="GET">
+      <div class="input-field">
+        <i class="material-icons">search</i>
+        <input type="text" name="query" id="query"
+               placeholder="Search papers" {% if query %} value="{{ query }}" {% endif %}/>
+      </div>
+    </form>
+  </div>
   <hr/>
   <table id="papers" class="u-full-width">
     <thead>
