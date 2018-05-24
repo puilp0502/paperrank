@@ -14,6 +14,10 @@ def annotate_ranking(queryset):
     return queryset
 
 
+def main_page(request):
+    return render(request, 'ranking/main.html')
+
+
 def paper_rank(request):
     try:
         year = int(request.GET['year'])
