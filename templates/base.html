@@ -16,15 +16,15 @@
 <body>
 <header id="header-container" class="header">
   <div id="heading">
-    <a id="logo-link" href="#">
+    <a id="logo-link" href="{% url 'ranking:main' %}">
       <div id="logo">
         paperrank
       </div>
     </a>
     <div id="nav">
-      <a href="#" class="nav-item">MAIN</a>
-      <a href="#" class="nav-item">RANK</a>
-      <a href="#" class="nav-item">PAPERS</a>
+      <a href="{% url 'ranking:main' %}" class="nav-item">MAIN</a>
+      <a href="{% url 'ranking:rank' %}" class="nav-item">RANK</a>
+      <a href="{% url 'ranking:papers' %}" class="nav-item">PAPERS</a>
     </div>
   </div>
 </header>
