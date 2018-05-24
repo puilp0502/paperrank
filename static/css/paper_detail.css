@@ -1,0 +1,7 @@
+.field {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+.field .field-title {
+    font-weight: bold;
+}

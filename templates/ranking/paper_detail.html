@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/paper_detail.css' %}">
+{% endblock %}
+{% block title %}{{ paper.title }} | paperrank {% endblock %}
+{% block contents %}
+  <h3>{{ paper.title }}</h3>
+  <hr/>
+  <div class="detail">
+    <div class="row">
+      <div class="six columns field">
+        <div class="field-title">Author</div>
+        <div class="field-value">{{ paper.author }}</div>
+      </div>
+      <div class="six columns field">
+        <div class="field-title">Published Year</div>
+        <div class="field-value">{{ paper.year }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns field">
+        <div class="field-title">Publisher</div>
+        <div class="field-value">{{ paper.publisher.name }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns field">
+        <div class="field-title">Abstract</div>
+        <div class="field-value">{{ paper.abstract }}</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

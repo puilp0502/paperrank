@@ -1,8 +1,9 @@
 from django.db.models import Sum, Q
 from django.http import HttpResponse
+from django.urls import reverse
 from django.utils import timezone
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 
 from .models import Paper
 
@@ -65,3 +66,27 @@ class PaperListView(ListView):
         context = super().get_context_data()
         context['query'] = self.request.GET.get('query')
         return context
+
+
+class PaperDetailView(DetailView):
+    model = Paper
+    template_name = 'ranking/paper_detail.html'
+    context_object_name = 'paper'
+
+    def __init__(self):
+        super().__init__()
+        self.redirect = None
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        url_slug = self.kwargs.get(self.slug_url_kwarg)
+        obj_slug = getattr(obj, self.get_slug_field())
+        if url_slug != obj_slug:
+            self.redirect = reverse('ranking:paper',
+                                    kwargs={'pk': obj.pk, 'slug': obj_slug})
+        return obj
+
+    def render_to_response(self, context, **response_kwargs):
+        if self.redirect:
+            return redirect(self.redirect)
+        return super().render_to_response(context, **response_kwargs)
