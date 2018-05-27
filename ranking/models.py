@@ -14,7 +14,7 @@ class Publisher(models.Model):
 class Paper(models.Model):
     title = models.CharField(max_length=140, blank=False)
     slug = models.SlugField(max_length=50, blank=True)  # auto-generated from title
-    author = models.CharField(max_length=40, blank=False)
+    author = models.CharField(max_length=255, blank=False)
     year = models.IntegerField(null=False)
     publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT)
     abstract = models.TextField(blank=True)
