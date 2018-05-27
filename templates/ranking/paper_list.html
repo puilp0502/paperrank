@@ -38,4 +38,19 @@
     {% endfor %}
     </tbody>
   </table>
+  <div class="row page">
+    <div class="three columns prev">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt; {{ page_obj.previous_page_number }}</a>
+      {% endif %}
+      &nbsp;
+    </div>
+    <div class="six columns current">{{ page_obj.number }}</div>
+    <div class="three columns next">
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }} >></a>
+      {% endif %}
+      &nbsp;
+    </div>
+  </div>
 {% endblock %}

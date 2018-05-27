@@ -56,6 +56,7 @@ class PaperListView(ListView):
 
     template_name = 'ranking/paper_list.html'
     context_object_name = 'papers'
+    paginate_by = 10
 
     def get_queryset(self):
         query = self.request.GET.get('query')

@@ -52,3 +52,24 @@ tbody .title a{
 tbody .title a:hover {
     color: #333;
 }
+.page {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+.page a {
+    text-decoration: none;
+    color: #888;
+}
+.page .prev {
+    text-align: left;
+    font-size: 2rem;
+}
+.page .current {
+    text-align: center;
+    font-size: 2rem;
+}
+.page .next {
+    text-align: right;
+    font-size: 2rem;
+}
