@@ -30,7 +30,9 @@
     {% for paper in papers %}
       <tr>
         <td>{{ paper.publisher.name }}</td>
-        <td>{{ paper.title }}</td>
+        <td class="title">
+          <a href="{% url 'ranking:paper' paper.pk paper.slug %}">{{ paper.title }}</a>
+        </td>
         <td>{{ paper.short_author }}</td>
       </tr>
     {% endfor %}
