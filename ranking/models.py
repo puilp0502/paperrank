@@ -19,6 +19,7 @@ class Paper(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT)
     abstract = models.TextField(blank=True)
     score = models.FloatField(null=False)
+    registered = models.DateTimeField(auto_now_add=True)
 
     def short_author(self):
         return self.author.split(' ')[0] + ' et al.'

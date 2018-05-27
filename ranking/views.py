@@ -15,7 +15,9 @@ def annotate_ranking(queryset):
 
 
 def main_page(request):
-    return render(request, 'ranking/main.html')
+    recent_paper = Paper.objects.order_by('-registered', '-pk')[:10]
+    return render(request, 'ranking/main.html',
+                  {'recent_paper': recent_paper})
 
 
 def paper_rank(request):

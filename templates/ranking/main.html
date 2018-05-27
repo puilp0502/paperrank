@@ -1,4 +1,24 @@
 {% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
 {% block title %}paperrank{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+{% endblock %}
 {% block contents %}
+  <h3>Welcome to paperrank</h3>
+  <section id="intro">
+    paperrank is a site where you can find out each publisher's papers, its respective ranking, and fluctuation of it.<br>
+    you can find each publishers' ranking in the <a href="{% url 'ranking:rank' %}">ranking</a> section,
+    and all the papers on this site can be found in the <a href="{% url 'ranking:papers' %}">papers</a> section.
+  </section>
+  <h3>Recently registered papers</h3>
+  <ul>
+  {% for paper in recent_paper %}
+    <li>
+      <a href="{% url 'ranking:paper' paper.pk paper.slug %}">{{ paper.title }}</a>
+       from {{ paper.publisher.name }} was registered {{ paper.registered|naturalday }}
+    </li>
+  {% endfor %}
+  </ul>
 {% endblock %}
