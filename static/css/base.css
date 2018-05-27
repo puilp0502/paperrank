@@ -41,5 +41,14 @@ header #nav {
     text-decoration: none;
 }
 body > .container {
+    min-height: 40rem;
     margin-top: 11rem;
+}
+footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+    padding: 15px;
+    font-size: 0.8em;
+}
+footer div {
+    text-align: center;
 }
