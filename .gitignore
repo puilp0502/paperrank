@@ -194,3 +194,7 @@ tags
 
 
 # End of https://www.gitignore.io/api/vim,python,django,pycharm+all,visualstudiocode
+
+# Production-specific settings
+settings_production.py
+collectstatic/
